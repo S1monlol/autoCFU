@@ -18,10 +18,7 @@ let files;
 
             page = await doc.getPage(i)
 
-            // add page content to content array
             content = content.concat((await page.getTextContent())['items'])
-
-            
 
 
         }
@@ -53,24 +50,40 @@ $: if (files) {
                 // if (item.str.match(/\d\./) != null), get next item
                 if(item.str.match(/\d\./)) {
                     
+                    let current = 0
                     question = {}
 
                     question.q = item.str
                     question.q += data[data.indexOf(item) + 2]['str']
-                    for(let i = 1; i < 5; i++){
-                        // if data[data.indexOf(item) + i doesnt start with the letter a
-                        
-                        
+                    for(let i = 1; i < 20; i++){
                         if(!data[data.indexOf(item) + i].str.match(/a\./)){
                             question.q += data[data.indexOf(item) + i]['str']    
-                        } else {
+                        } else{
                             question.a = data[data.indexOf(item) + i + 2]['str']
                             question.b = data[data.indexOf(item) + i + 6]['str']
-                            question.c = data[data.indexOf(item) + i]['str']
-                            question.d = data[data.indexOf(item) + i]['str']
-
+                            
+                            
                         }
+
                     }
+
+                    
+
+
+
+
+
+
+
+
+                        // else {
+                        //     question.a = data[data.indexOf(item) + i + 2]['str']
+                        //     question.b = data[data.indexOf(item) + i + 6]['str']
+                        //     question.c = data[data.indexOf(item) + i + 8]['str']
+                        //     question.d = data[data.indexOf(item) + i]['str']
+
+                        // }
+                    
 
                     
                 }
